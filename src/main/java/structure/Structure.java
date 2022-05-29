@@ -22,13 +22,12 @@ public class Structure {
 
             @Override
             public void enterValue(StructureParser.ValueContext ctx) {
+
             }
 
             @Override
             public void exitValue(StructureParser.ValueContext ctx) {
-                if (ctx.invokingState > -1) {
-                    System.out.println(ctx.getText());
-                }
+                System.out.println(ctx.INT().getText());
             }
 
             @Override
@@ -47,6 +46,6 @@ public class Structure {
             public void exitEveryRule(ParserRuleContext parserRuleContext) {
             }
         });
-        parser.value();
+        parser.init();
     }
 }

@@ -4,7 +4,9 @@ Demo:
 
 - ### [入门demo](./src/main/java/demo/Hello.g4)
 - ### [读取数组元素](./src/main/java/structure/Structure.g4)
-- ### [赋值语句](./src/main/java/assgin/Assgin.g4)
+- ### [赋值语句-1](./src/main/java/assgin/Assgin.g4)
+- ### [官方demo-赋值语句-2](./src/main/java/expr/Expr.g4)
+- ### [官方demo-XML](./src/main/java/xml/Xml.java)
 
 ---
 
