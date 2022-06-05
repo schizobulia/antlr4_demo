@@ -26,11 +26,9 @@
 
 /** XML lexer derived from ANTLR v4 ref guide book example */
 lexer grammar XMLLexer;
-
 @header {
-package xml;
+    package xml;
 }
-
 // Default "mode": Everything OUTSIDE of a tag
 COMMENT     :   '<!--' .*? '-->' ;
 CDATA       :   '<![CDATA[' .*? ']]>' ;

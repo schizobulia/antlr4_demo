@@ -1,6 +1,6 @@
 // Generated from XMLLexer.g4 by ANTLR 4.9
 
-package xml;
+    package xml;
 
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;

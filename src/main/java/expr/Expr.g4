@@ -13,7 +13,7 @@ stat:   expr NEWLINE
 
 expr:   expr ('*'|'/') expr   
     |   expr ('+'|'-') expr   
-    |   INT                    
+    |   INT
     |   ID                    
     |   '(' expr ')'         
     ;
