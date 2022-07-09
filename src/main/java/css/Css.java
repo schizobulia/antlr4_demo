@@ -2,28 +2,33 @@ package css;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.TokenStreamRewriter;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.RuleNode;
 
 public class Css {
     public static void main(String[] args) {
-        CssLexer lexer = new CssLexer(CharStreams.fromString("@import 'x.css';"));
+        CssLexer lexer = new CssLexer(CharStreams.fromString(".b { color: red; } .c { color: blue; }"));
         CommonTokenStream stream = new CommonTokenStream(lexer);
         CssParser parser = new CssParser(stream);
         ParseTree tree = parser.stylesheet();
-        new EvalVisitor().visit(tree);
+        EvalVisitor evalVisitor = new EvalVisitor(stream);
+        evalVisitor.visit(tree);
+        System.out.println(evalVisitor.rewriter.getText());
     }
 }
 
 class EvalVisitor extends CssBaseVisitor<String> {
-    @Override
-    public String visitChildren(RuleNode node) {
-        return super.visitChildren(node);
+    TokenStreamRewriter rewriter;
+    public EvalVisitor(CommonTokenStream tokenStream) {
+        rewriter = new TokenStreamRewriter(tokenStream);
     }
 
     @Override
-    public String visitGoodImport(CssParser.GoodImportContext ctx) {
-        System.out.println(ctx.String_());
-        return super.visitGoodImport(ctx);
+    public String visitExpr(CssParser.ExprContext ctx) {
+        String text = ctx.getText();
+        if (text.equals("red")) {
+            rewriter.replace(ctx.getStart(), ctx.getStop(), "#ff0000");
+        }
+        return super.visitExpr(ctx);
     }
 }
